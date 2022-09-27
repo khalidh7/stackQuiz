@@ -1,0 +1,52 @@
+{% from "showlinks.html" import show_links %}
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'home.css') }}"/>
+  </head>
+  <body>
+
+
+
+    <div class="parent">
+        <div class="header mb-2">
+            {{ show_links(user)}}
+
+        </div>
+
+
+         <div class="questions_answered container text-light p-3">
+         <h1>Home</h1>
+         <hr class="text-light"/>
+            {% if loginneeded == true %}
+
+             <h3>Login to take Quiz</h3>
+            <a href = "/login" class="text-light">
+                <button>Login</button>
+            </a>
+
+             {% endif %}
+             {% if loggedin == true %}
+
+             <h3>Take The Quiz</h3>
+             <h4>Figure out what technology stack(s) you could use for your next project</h4>
+            <a href = "/quiz" class="text-light">
+                <button>Start</button>
+            </a>
+             {% endif %}
+         </div>
+
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  </body>
+</html>
