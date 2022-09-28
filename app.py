@@ -90,14 +90,167 @@ def register():
 def quiz():
     user = getCurrentUser()
     lang = None
+    langa= None
+    idea = None
+    dba = None
+    extras = None
+    typeStack = None
+    dbc = None
+    lang = None
+    platform = None
     if request.method == "POST":
         typeStack = request.form['typeStack']
         dbc = request.form['dbq']
         lang = request.form['language']
         platform = request.form['op']
-        return render_template("results.html", typeStack = typeStack, dbc = dbc, lang = lang, platform = platform)
+        if typeStack and dbc and lang and platform:
+            if typeStack == 'frontend':
+                if platform == 'ios':
+                    langa = 'Swift is the industry standard when it comes to iOS development.'
+                    idea = 'XCode is the best editor to develop and iOS application.'
+                    extras = 'Swift and XCode can be used for front-end, back-end, or both.'
+                    dba = None
+                if platform == 'android':
+                    langa = 'Java and Kotlin are the best languages to create an Android APK.'
+                    idea = "Android Studio by JetBrains is a great choice due to its support for Android Development and its Android Emulator"
+                    dba = None
+                    extras = None
+                if platform == 'website':
+                    if lang == 'python' or lang == 'java':
+                        langa = 'Using frameworks like Flask and Django, you can create a website using Python.'
+                        idea = 'VS Code is one of the best code editors you can use for a Python web application. However PyCharm by JetBrains is a still a great choice.'
+                        dba = None
+                        extras = 'If you are still new to web development, it is recommended to use Flask. Once you gain more experience try creating something usuing Django.'
 
-
+                    if lang == 'javascript':
+                        langa = 'The best place to start with web development is the HTML/CSS/Javascript framework. Once you get more comfortble try using a Javascript framework like React.js or Angular.'
+                        idea = 'VS Code and PhpStorm are both great options'
+                        dba= None
+                        extras = None
+                if platform == 'os':
+                    if lang == 'python':
+                        langa = 'Python is a very powerful programming language due to its extensive libraries and simple syntax.'
+                        idea = 'VS Code and PyCharm are both great options.'
+                        dba = None
+                        extras = None
+                    if lang == 'java' or lang == 'javascript':
+                        langa = 'Java is a great language first language to learn. Its syntax is not supe hard to learn but it is difficult enough to challenge you.'
+                        idea = 'IntelliJ IDEA by JetBrains is a great IDE to use with Java due to its support for Java development'
+                        dba = None
+                        extras = None
+            if typeStack == 'backend':
+                if platform == 'android':
+                    if dbc == 'hosteddb':
+                        langa = 'Java / PHP'
+                        idea = 'Android Studio'
+                        dba = 'MySQL'
+                        extras = 'Create a REST API using a Linux, Apache, MySQL, PHP stack. Use the retrofit library to create HTTP requests. Gradle project recommended.'
+                    if dbc == 'localdb':
+                        langa = 'Java'
+                        idea = 'Android Studio'
+                        dba = 'Sqlite'
+                        extras = 'Sqlite is a local database stored on your devices hard drive. No internet access is required to use Sqlite database.'
+                    if dbc == 'nodb':
+                        langa = 'Java'
+                        idea = 'Android Studio'
+                        dba = None
+                        extras = None
+                if platform == 'ios':
+                    if dbc == 'hosteddb':
+                        langa = 'Swift'
+                        idea = 'XCode'
+                        dba = 'MySQL'
+                        extras = None
+                    if dbc == 'localdb':
+                        langa = 'Swift'
+                        idea = 'XCode'
+                        dba = 'Sqlite'
+                        extras = 'Sqlite is a local database stored on your devices hard drive. No internet access is required to use Sqlite database.'
+                    if dbc == 'nodb':
+                        langa = 'Swift'
+                        idea = 'XCode'
+                        dba = None
+                        extras = None
+                if platform == 'os' or platform == 'website':
+                    if dbc == 'hosteddb':
+                        if lang == 'python':
+                            langa = 'Python is a very powerful programming language due to its extensive libraries and simple syntax.'
+                            idea = 'VS Code and PyCharm are both great options.'
+                            dba = 'MySQL'
+                            extras = None
+                        if lang == 'java' or lang == 'javascript':
+                            langa = 'Java is a great language first language to learn. Its syntax is not supe hard to learn but it is difficult enough to challenge you.'
+                            idea = 'IntelliJ IDEA by JetBrains is a great IDE to use with Java due to its support for Java development'
+                            dba = 'MySQL'
+                            extras = None
+                    if dbc == 'localdb':
+                        if lang == 'python':
+                            langa = 'Python is a very powerful programming language due to its extensive libraries and simple syntax.'
+                            idea = 'VS Code and PyCharm are both great options.'
+                            dba = 'Sqlite'
+                            extras = None
+                        if lang == 'java' or lang == 'javascript':
+                            langa = 'Java is a great language first language to learn. Its syntax is not supe hard to learn but it is difficult enough to challenge you.'
+                            idea = 'IntelliJ IDEA by JetBrains is a great IDE to use with Java due to its support for Java development'
+                            dba = 'Sqlite'
+                            extras = None
+                    if dbc == 'nodb':
+                        if lang == 'python':
+                            langa = 'Python is a very powerful programming language due to its extensive libraries and simple syntax.'
+                            idea = 'VS Code and PyCharm are both great options.'
+                            dba = None
+                            extras = None
+                        if lang == 'java' or lang == 'javascript':
+                            langa = 'Java is a great language first language to learn. Its syntax is not supe hard to learn but it is difficult enough to challenge you.'
+                            idea = 'IntelliJ IDEA by JetBrains is a great IDE to use with Java due to its support for Java development'
+                            dba = None
+                            extras = None
+            if typeStack == 'both':
+                if platform == 'ios':
+                    langa = 'Swift'
+                    idea = 'XCode'
+                    if dbc == 'hosteddb':
+                        dba = 'MySQL'
+                    if dbc == 'localdb':
+                        dba = 'Sqlite'
+                    if dbc == 'nodb':
+                        dba = None
+                    extras = None
+                if platform == 'android':
+                    langa = 'Java'
+                    idea = 'Android Studio'
+                    if dbc == 'hosteddb':
+                        dba = 'MySQL'
+                    if dbc == 'localdb':
+                        dba = 'Sqlite'
+                    if dbc == 'nodb':
+                        dba = None
+                    extras == None
+                if platform == 'website':
+                    langa = 'Javascript (Node.js, React.js)'
+                    idea = 'Visual Studio'
+                    if dbc == 'hosteddb':
+                        dba = 'Mongodb'
+                        extras = 'The MERN stack (MongoDB, Express.js, React.js, Node.js) is a great option for full stack development.'
+                    if dbc == 'localdb':
+                        dba = 'Sqlite'
+                        extras = None
+                    if dbc == 'nodb':
+                        dba = None
+                        extras = None
+                if platform == 'os':
+                    langa = 'Python'
+                    if dbc == 'hosteddb':
+                        dba = 'MySQL'
+                    if dbc == 'localdb':
+                        dba = 'Sqlite'
+                    if dbc == 'nodb':
+                        dba = None
+                    extras == None
+            return render_template('results.html', language=langa, ide=idea, dba=dba, extras=extras)
+        else:
+            error = 'Please answer all questions'
+            render_template('quiz.html', error = error)
     return render_template("quiz.html", user = user)
 
 
@@ -113,20 +266,11 @@ def quiz():
 
 
 @app.route('/results')
-def results(typeStack, dbc, lang, platform):
+def results(lang, ide, db, extras):
     user = getCurrentUser()
-    dba = None
-    extras = None
-    if typeStack == 'frontend':
-        if platform == 'ios':
-            lang = 'Swift is the industry standard when it comes to iOS development.'
-            ide = 'XCode is the best editor to develop and iOS application.'
-            extras = 'Swift and XCode can be used for front-end, back-end, or both.'
-            return render_template('results.html', language=lang, ide=ide, dba=dba, extras=extras)
-        elif platform == 'android':
-            lang = 'Java and Kotlin are the best languages to create an Android APK.'
-            ide = "Android Studio by JetBrains is a great choice due to its support for Android Development and its Android Emulator"
-            return render_template('results.html', language = lang, ide = ide, dba = dba, extras = extras)
+
+    return render_template('results.html')
+
 
 
 

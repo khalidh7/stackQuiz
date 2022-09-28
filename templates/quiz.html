@@ -26,8 +26,14 @@
          <hr class="text-light"/>
          </div>
 
+        {% if error %}
+             <h4 class="text-danger ">
+                 {{ error }}
+             </h4>
+         {% endif %}
+
        <form action="/quiz" method="POST">
-            <div class="question1 p-3 container text-light">
+            <div class="question1 p-3 container text-light" >
                 <h2>Question 1</h2>
                 <h3>Will your project have a front-end, back-end, or both?</h3>
                 <h10>*Front-end in this case means a graphical user interface.</h10>
