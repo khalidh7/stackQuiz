@@ -1,6 +1,6 @@
 # stackQuiz
 
-Built with using Flask Python
+Built with using Flask, Python, Bootstrap, & Sqlite
 
 1. User must login to take the quiz.
 
